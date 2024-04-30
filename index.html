@@ -1,0 +1,45 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knocky</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="/knockout.js"></script>
+    <script src="/knockout-sortable.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div
+      class="category-text"
+      data-bind="sortable: { data: categories, allowDrop: true, afterMove: drop }"
+    >
+      <div class="category">
+        <div class="category_box">
+          <h3
+            data-bind="click: toggleVisibility.bind($data), text: name, css: { 'arrow-down': !isVisible(), 'arrow-up': isVisible() }"
+          ></h3>
+          <svg class="category_button" width="10" height="18">
+            <use xlink:href="./svg/moving.svg#search" width="10" height="18" />
+          </svg>
+        </div>
+
+        <ul
+          data-bind="visible: isVisible, sortable: { data: documents, allowDrop: true, afterMove: moveItem }"
+        >
+          <div class="category_box">
+            <li class="drag-handle" data-bind="text: $data"></li>
+            <svg class="category_button" width="10" height="18">
+              <use
+                xlink:href="./svg/moving.svg#search"
+                width="10"
+                height="18"
+              />
+            </svg>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
